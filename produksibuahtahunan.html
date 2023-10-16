@@ -33,12 +33,11 @@
                         <!-- menambahkan dropdown-menu-end agar tidak terpotong -->
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="index.html">Jumlah Penduduk</a></li>
-                            <li><a class="dropdown-item" href="pendudukjeniskelamin.html">Penduduk Menurut Jenis Kelamin</a></li>
+                            <li><a class="dropdown-item" href="pendudukjeniskelamin.html">Penduduk Menurut Jenis
+                                    Kelamin</a></li>
                             <li><a class="dropdown-item" href="airyangdisalurkan.html">Air yang Disalurkan</a></li>
-                            <li><a class="dropdown-item" href="produksibuahtahunan.html">Jumlah Produksi Buah-Buahan
-                                    Tahunan</a></li>
-                            <li><a class="dropdown-item" href="persentasependudukmiskin.html">Persentase Penduduk
-                                    Miskin</a></li>
+                            <li><a class="dropdown-item" href="produksibuahtahunan.html">Jumlah Produksi Buah-Buahan Tahunan</a></li>
+                            <li><a class="dropdown-item" href="persentasependudukmiskin.html">Persentase Penduduk Miskin</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -57,7 +56,7 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                <h5>Air yang Disalurkan</h5>
+                <h5>Jumlah Produksi Buah-Buahan Tahunan (Kuintal)</h5>
             </div>
             <div class="card-body">
                 <div id="chart"></div>
@@ -96,21 +95,60 @@
         crossorigin="anonymous"></script>
 
     <script>
-var options = {
-            series: [10.77, 16.40,9.46, 17.43, 19.75,8.14, 18.04],
+        var options = {
+            series: [310.416, 182.533, 954, 29.673, 130.759, 7, 78.902, 6.467],
             chart: {
-                type: 'donut',
-                width: 500
+                height: 390,
+                type: 'radialBar',
             },
-            labels : ['Lembar', 'Gerung', 'Kediri', 'Narmada', 'Gunung Sari', 'Senggigi', 'Parampuan'],
+            plotOptions: {
+                radialBar: {
+                    offsetY: 0,
+                    startAngle: 0,
+                    endAngle: 270,
+                    hollow: {
+                        margin: 5,
+                        size: '30%',
+                        background: 'transparent',
+                        image: undefined,
+                    },
+                    dataLabels: {
+                        name: {
+                            show: false,
+                        },
+                        value: {
+                            show: false,
+                        }
+                    }
+                }
+            },
+            colors: ['#537861', '#787353', '#42AE6C', '#E2BA79', '#E5D894', '#453F3C', '#D5856E', '#8A7C73'],
+            labels: ['Mangga', 'Durian', 'Jeruk Siam', 'Pepaya', 'Pisang', 'Salak', 'Jambu Biji', 'Sawo'],
+            legend: {
+                show: true,
+                floating: true,
+                fontSize: '16px',
+                position: 'left',
+                offsetX: 160,
+                offsetY: 15,
+                labels: {
+                    useSeriesColors: true,
+                },
+                markers: {
+                    size: 0
+                },
+                formatter: function (seriesName, opts) {
+                    return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]
+                },
+                itemMargin: {
+                    vertical: 3
+                }
+            },
             responsive: [{
                 breakpoint: 480,
                 options: {
-                    chart: {
-                        width: 200
-                    },
                     legend: {
-                        position: 'bottom'
+                        show: false
                     }
                 }
             }]
@@ -118,6 +156,7 @@ var options = {
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
+
     </script>
 </body>
 

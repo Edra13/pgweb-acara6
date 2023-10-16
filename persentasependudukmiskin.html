@@ -33,7 +33,8 @@
                         <!-- menambahkan dropdown-menu-end agar tidak terpotong -->
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="index.html">Jumlah Penduduk</a></li>
-                            <li><a class="dropdown-item" href="pendudukjeniskelamin.html">Penduduk Menurut Jenis Kelamin</a></li>
+                            <li><a class="dropdown-item" href="pendudukjeniskelamin.html">Penduduk Menurut Jenis
+                                    Kelamin</a></li>
                             <li><a class="dropdown-item" href="airyangdisalurkan.html">Air yang Disalurkan</a></li>
                             <li><a class="dropdown-item" href="produksibuahtahunan.html">Jumlah Produksi Buah-Buahan
                                     Tahunan</a></li>
@@ -57,7 +58,7 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                <h5>Air yang Disalurkan</h5>
+                <h5>Persentase Penduduk Miskin</h5>
             </div>
             <div class="card-body">
                 <div id="chart"></div>
@@ -96,24 +97,30 @@
         crossorigin="anonymous"></script>
 
     <script>
-var options = {
-            series: [10.77, 16.40,9.46, 17.43, 19.75,8.14, 18.04],
+        var options = {
+            series: [{
+                name: 'Persentase',
+                data: [17.43, 17.11, 17.38, 16.73, 16.46, 15.20, 15.17, 14.28]
+            }], 
             chart: {
-                type: 'donut',
-                width: 500
+                height: 350,
+                type: 'area'
             },
-            labels : ['Lembar', 'Gerung', 'Kediri', 'Narmada', 'Gunung Sari', 'Senggigi', 'Parampuan'],
-            responsive: [{
-                breakpoint: 480,
-                options: {
-                    chart: {
-                        width: 200
-                    },
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }]
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            xaxis: {
+                type: 'datetime',
+                categories: ["2014", "2015", "2016", "2017","2018", "2019", "2020", "2021" ]
+            },
+            tooltip: {
+                x: {
+                    format: 'yyyy'
+                },
+            },
         };
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);
